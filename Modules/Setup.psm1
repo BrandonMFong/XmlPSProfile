@@ -29,7 +29,7 @@ function _InitConfig
     $NewXml.Machine.AppendChild($Node_ConfigFile)
     $NewXml.Machine.GitRepoDir = $($PSScriptRoot | Split-Path -Parent).ToString();
 
-    [String]$FileName = $($PROFILE | Split-Path -Parent).ToString() + "\Profile.xml"; # Get file name
+    [String]$FileName = $HOME + "\Profile.xml"; # Get file name
     $NewXml.Save($FileName); # save the contents to the file
     _WriteFullContent($FileName); # get the empty xml file 
 

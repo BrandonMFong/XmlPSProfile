@@ -18,7 +18,7 @@ xAppSettings::xAppSettings() : xJson()
     xStatus status = this->_status;
     xFile * filePath;
     xAppPointer * appPointer = new xAppPointer(); // Was thinking about making this global but I don't this it can see it
-
+    
     // We are going to hard code the path to the app.json since it will 
     // not move by design
     filePath = new xFile(appPointer->Machine.GitRepoDir.InnerXml + dAppSettingsFilePath); 
@@ -66,4 +66,13 @@ xAppSettings::xAppSettings() : xJson()
 void xAppSettings::SetJsonValue(xString &target, nlohmann::json value)
 {
     target = value.is_null() ? xEmptyString : value;
+}
+
+// TODO make recursive function that parses the path 
+
+xString xAppSettings::GetValueFromPath(xString path)
+{
+    xString result;
+
+    return result;
 }

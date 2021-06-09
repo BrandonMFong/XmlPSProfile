@@ -10,6 +10,10 @@ Incorporating a SQL database to your shell profile can provide security to your 
 
 Currently xPro supports Powershell and z shell. 
 
+### Debugging 
+
+* [C++](https://code.visualstudio.com/docs/cpp/config-mingw)
+
 ### Powershell
 
 - Run Setup.ps1

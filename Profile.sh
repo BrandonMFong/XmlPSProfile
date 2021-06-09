@@ -3,7 +3,12 @@
 # sudo apt install apt
 # Known issues: if object count is one, that object will not load 
 
-declare -A AppPointer=( [GitRepoDir]=$(xmllint --xpath "string(//GitRepoDir)" ~/.profile.xml) [ConfigFile]=$(xmllint --xpath "string(//ConfigFile)" ~/.profile.xml))
+dirPath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+xProBin="${HOME}/.xPro/bin"
+
+export PATH="${xProBin}":$PATH
+
+declare -A AppPointer=( [GitRepoDir]=$(xmllint --xpath "string(//GitRepoDir)" $HOME/.xPro/profile.xml) [ConfigFile]=$(xmllint --xpath "string(//ConfigFile)" $HOME/.xPro/profile.xml))
 ConfigPath="${AppPointer[GitRepoDir]}/Config/Users${AppPointer[ConfigFile]}";
 
 # Define alias
@@ -33,8 +38,6 @@ do
     SimpleValue=$(xmllint --xpath "(//Object/SimpleValue)[${i}]/text()" ${ConfigPath});
     declare "$(echo $VarName)=$(echo $SimpleValue)";
 done 
-
-export PATH="${AppPointer[GitRepoDir]}/bin":$PATH
 
 # Prompt
 color=$(echo $(xmllint --xpath "(//ShellSettings/Prompt/String/@Color)" ${ConfigPath}) | awk -F'[="]' '!/>/{print $(NF-1)}')

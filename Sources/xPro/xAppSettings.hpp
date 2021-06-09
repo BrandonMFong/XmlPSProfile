@@ -70,6 +70,8 @@ public:
      * 
      */
     xRootAppSettings Machine;
+
+    xString GetValueFromPath(xString path);
 protected:
     /**
      * @brief Set the Json Value object

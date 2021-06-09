@@ -8,7 +8,9 @@ TOOLS = \
 	cat \
 	getdir \
 	query \
-	json
+	json \
+	configReader \
+	homePath
 
 # Ascend object hierarchy
 FILESYSTEM = \
@@ -26,7 +28,8 @@ SQL = \
 
 XPRO = \
 	xPro \
-	xObject
+	xObject \
+	xArguments
 
 EXTERN = \
 	pugixml.cpp \
@@ -35,3 +38,5 @@ EXTERN = \
 OBJECTS = $(XPRO) $(SQL) $(FILESYSTEM)
 
 all: $(EXTERN) $(OBJECTS) $(TOOLS) clean
+
+lib: debug $(EXTERN) $(OBJECTS)

@@ -40,11 +40,9 @@ xDirectory::xDirectory(xString path) : xObject()
     {
         tempPath = new xPath(path);
         this->_isDirectory = IsDirectory(*tempPath,ec);
-    }
 
-    if(status) 
-    {
         this->SetPath(path);
+        
         this->SetExists();
 
         // Keep track if this path exists
@@ -150,7 +148,15 @@ xString xDirectory::Path()
 void xDirectory::SetPath(xString path)
 {
     #ifdef isWINDOWS
-    this->_path = fs::canonical(path).string();
+    try 
+    {
+        this->_path = fs::canonical(path).string();
+    }
+    catch (...)
+    {
+        std::cout << "xDirectory: error in fs::canonical() method, with parameter " << path << std::endl;
+        this->_path = xEmptyString;
+    }
     #else
     this->_path = fs::canonical(path); // Remove any of the ".." or "~" in path 
     #endif

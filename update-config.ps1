@@ -39,14 +39,16 @@ Push-Location $PSScriptRoot
 
     # Create AppPointer
     Write-Host "Config files to choose from:"
-    .\bin\xpro.enumdir.exe $AppJson.Directories.UserConfig; # Get items from the user config
+    [string]$pathToxProConfig = "." + $AppJson.Directories.UserConfig
+    .\bin\xpro.enumdir.exe $pathToxProConfig; # Get items from the user config
     $choice = Read-Host -Prompt "So"; # Get user's choice 
-    [String]$ConfigFile = $(.\bin\xpro.selectitem.exe -path $AppJson.Directories.UserConfig -index $($choice - 1)); # Get the index
+    [String]$ConfigFile = $(.\bin\xpro.selectitem.exe -path $pathToxProConfig -index $($choice - 1)); # Get the index
 
     Write-Host  "`nConfig => $($ConfigFile)`n" -ForegroundColor Cyan;
 
     # write into apppointer
-    Push-Location $($PROFILE |Split-Path -Parent);
+    Push-Location $HOME;
+    # Push-Location $($PROFILE |Split-Path -Parent);
         [System.Xml.XmlDocument]$XmlEditor = Get-Content .\Profile.xml; # read profile.xml
         [String]$Path = $(Get-ChildItem .\Profile.xml).FullName; # get the path to the profile.xml
         $XmlEditor.Machine.ConfigFile = "\" + $ConfigFile; # write configfile to AppPointer

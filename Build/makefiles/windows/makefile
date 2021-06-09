@@ -19,6 +19,10 @@ FLAGS = \
 	/D_CRT_SECURE_NO_WARNINGS=1
 # MACROS end
 
+debug : 
+    FLAGS += /g
+    CLANGFLAGS += /g
+
 $(TOOLS) : 
 	@echo xPro Tools: $@ 
 	@$(CC) /c $(TOOLS_DIR)\$@\main.cpp $(FLAGS) 

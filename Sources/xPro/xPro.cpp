@@ -10,6 +10,7 @@
 #include <xPro/xPro.hpp>
 
 xStatus gStatus = Good;
+xArguments * gArg;
 
 xString LeafItemFromPath(xString path)
 {
@@ -43,4 +44,9 @@ xInt Char2xInt(xString character)
     strValue << character;
     strValue >> result;
     return result;
+}
+
+void setArgs(int argc, char *argv[])
+{
+    gArg = new xArguments(argc, argv);
 }

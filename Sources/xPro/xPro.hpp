@@ -23,10 +23,16 @@
 #include <istream> 
 #include <direct.h>
 #include <sstream> 
+#include <stdlib.h>
+#include <sys/stat.h>
 namespace fs = std::filesystem;
 #define dPathSeparator '\\'
 #define getcwd _getcwd
+#ifdef _MAX_PATH
 #define PATH_MAX _MAX_PATH
+#else 
+#define PATH_MAX 260
+#endif
 #define isWINDOWS
 #define dAppPointerFile "Profile.xml"
 #define dAppSettingsFilePath "\\Config\\app.json"
@@ -49,7 +55,7 @@ typedef unsigned int uint;
 #include <stdlib.h>
 namespace fs = std::experimental::filesystem;
 #define dPathSeparator '/'
-#define dAppPointerFile ".profile.xml"
+#define dAppPointerFile ".xPro/profile.xml"
 #define dAppSettingsFilePath "/Config/app.json"
 #define dHomePath "HOME"
 
@@ -66,7 +72,7 @@ namespace fs = std::experimental::filesystem;
 #include <stdlib.h>
 namespace fs = std::__fs::filesystem;
 #define dPathSeparator '/'
-#define dAppPointerFile ".profile.xml"
+#define dAppPointerFile ".xPro/profile.xml"
 #define dAppSettingsFilePath "/Config/app.json"
 #define dHomePath "HOME"
 #endif
@@ -79,17 +85,20 @@ namespace fs = std::__fs::filesystem;
 /** APP SPECIFIC START **/
 
 /*** xDefintions ***/
-#define True true                                       /** Boolean True */
-#define False false                                     /** Boolean False */
-#define Good true                                       /** Status = Good */
-#define Bad false                                       /** Status = Bad */ 
-#define xNull nullptr                                   /** Null Pointer */
-#define xEmptyString ""                                 /** Empty String */
-#define IsFile(path,ec) fs::is_regular_file(path,ec)    /** Tests if file */
-#define IsDirectory(path,ec) fs::is_directory(path,ec)  /** Tests path if it is a directory */
-#define dUserConfigDirectoryPath "/Config/Users"        /** User Config Path */
-#define xBegin int main(int argc, char *argv[]){        /** Marks beginning of code */
-#define xEnd return (xInt)(!gStatus);}                  /** Returns xStatus */
+#define True true                                           /** Boolean True */
+#define False false                                         /** Boolean False */
+#define Good true                                           /** Status = Good */
+#define Bad false                                           /** Status = Bad */ 
+#define xNull nullptr                                       /** Null Pointer */
+#define xEmptyString ""                                     /** Empty String */
+#define IsFile(path,ec) fs::is_regular_file(path,ec)        /** Tests if file */
+#define IsDirectory(path,ec) fs::is_directory(path,ec)      /** Tests path if it is a directory */
+#define dUserConfigDirectoryPath "/Config/Users"            /** User Config Path */
+#define xBegin int main(int argc, char *argv[])\
+{setArgs(argc,argv);                                        /** Marks beginning of code */
+#define xEnd return (xInt)(!gStatus);}                      /** Returns xStatus */
+#define dFooter "(c) 2021 xPro All Rights Reserved"           /** Footer */
+#define dHelpArgument "--help"                              /** Help argument */
 
 /*** xTypes ***/
 typedef int xInt;                           /** xPro-Type Integer */
@@ -105,10 +114,10 @@ typedef fs::path xPath;                     /** xPro-Type File System Path */
 
 /*** xConstants ***/
 const xString kHomeDirectoryPath = getenv(dHomePath); // _dupenv_s is suggested for windows 
-const xString kHomeProfilePath = kHomeDirectoryPath + "/" + dAppPointerFile;
+const xString kHomeProfilePath = kHomeDirectoryPath + dPathSeparator + dAppPointerFile;
 
 /*** xGlobals ***/
-extern xStatus gStatus; /**Status variable for xTools */ 
+extern xStatus gStatus; /** Status variable for xTools */ 
 
 // Order in descending order of inheritance
 /*** xClasses ***/
@@ -131,6 +140,9 @@ extern xStatus gStatus; /**Status variable for xTools */
 #include <xPro/xDatabase.hpp>
 #include <xPro/xQuery.hpp>
 
+/**** Argument Objects ****/
+#include <xPro/xArguments.hpp>
+
 /** Get's leaf item from a given filesystem path. This function is assuming the path already exists. 
  * Reference: https://stackoverflow.com/questions/22818925/c-error-undefined-symbols-for-architecture-x86-64
  * 
@@ -146,6 +158,8 @@ xString LeafItemFromPath(xString path);
  * @return xInt
  */
 xInt Char2xInt(xString character);
+
+void setArgs(int argc, char *argv[]);
 
 /** APP SPECIFIC END **/
 

@@ -321,12 +321,12 @@
   </Directories>
   <!-- Aliases to call Third Party OR User Defined exectuables, scripts, etc  -->
   <Programs>
-    <Program Alias="Archive" SecType="public">$PSScriptRoot\..\Scripts\Archive.ps1</Program>
-    <Program Alias="Get-Weather" SecType="public">$PSScriptRoot\..\Scripts\HTTP\Weather.ps1</Program>
-    <!-- <Program Alias="Search" SecType="public">$PSScriptRoot\..\Scripts\Search.ps1</Program> -->
+    <Program Alias="Archive" SecType="public">B:\SOURCE\Repo\xPro\\Scripts\Archive.ps1</Program>
+    <Program Alias="Get-Weather" SecType="public">B:\SOURCE\Repo\xPro\\Scripts\HTTP\Weather.ps1</Program>
+    <!-- <Program Alias="Search" SecType="public">B:\SOURCE\Repo\xPro\\Scripts\Search.ps1</Program> -->
     <!-- ERROR HERE, WRITE BUG FIX -->
-    <Program Alias="umount" SecType="public">$PSScriptRoot\..\Scripts\DismountDrive.ps1</Program>
-    <Program Alias="Query" SecType="public">$PSScriptRoot\..\Scripts\Query.ps1</Program>
+    <Program Alias="umount" SecType="public">B:\SOURCE\Repo\xPro\\Scripts\DismountDrive.ps1</Program>
+    <Program Alias="Query" SecType="public">B:\SOURCE\Repo\xPro\\Scripts\Query.ps1</Program>
     <Program Alias="chrome" SecType="public">C:\Program Files (x86)\Google\Chrome\Application\chrome.exe</Program>
     <Program Alias="putty" SecType="public">C:\Program Files\PuTTY\putty.exe</Program>
     <Program Alias="sql" SecType="public">C:\Program Files (x86)\Microsoft SQL Server Management Studio 18\Common7\IDE\Ssms.exe</Program>
@@ -340,8 +340,8 @@
     <Program Alias="WhatsApp" SecType="public">C:\Users\fongm\AppData\Local\WhatsApp\WhatsApp.exe</Program>
     <Program Alias="Slack" SecType="public">C:\Users\fongm\AppData\Local\slack\slack.exe</Program>
     <Program Alias="git" SecType="public">C:\Program Files\Git\cmd\git.exe</Program>
-    <Program Alias="Get-Info" SecType="public">$PSScriptRoot\..\Scripts\GetPCInfo.ps1</Program>
-    <Program Alias="Time" SecType="public">$PSScriptRoot\..\Scripts\TIME.ps1</Program>
+    <Program Alias="Get-Info" SecType="public">B:\SOURCE\Repo\xPro\\Scripts\GetPCInfo.ps1</Program>
+    <Program Alias="Time" SecType="public">B:\SOURCE\Repo\xPro\\Scripts\TIME.ps1</Program>
     <Program Alias="balenaEtcher" SecType="public">C:\Users\fongm\AppData\Local\Programs\balena-etcher\balenaEtcher.exe</Program>
     <Program Alias="vs" SecType="public">C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe</Program>
     <Program Alias="edge" SecType="public">C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe</Program>

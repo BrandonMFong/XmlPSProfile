@@ -4,6 +4,30 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+      {
+        "name": "xPro Tool Launch",
+        "type": "cppdbg",
+        "request": "launch",
+        "program": "${fileDirname}\\main.exe",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "console": "externalTerminal",
+        "MIMode": "gdb",
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing for gdb",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }
+        ],
+        "visualizerFile": "${workspaceFolder}\\.vscode\\visualizer.natvis",
+        "showDisplayString": true,
+        "windows": {
+            "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe"
+        }
+      },
         {
             "name": "(Powershell) xPro Debug",
             "type": "PowerShell",
